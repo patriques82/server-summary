@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, abort    
 
 pokemons = [
     { "name": "pikachu", "height": 0.4, "weight": 6.0, "img": "https://img.pokemondb.net/artwork/large/pikachu.jpg"  },
@@ -34,8 +34,9 @@ def extractForm():
     w = request.form["weight"]
     h = request.form["height"]
     i = request.form["img"]
-    pokemons.append({ "name": n, "weight": w, "height": h, "img": i })
-    return redirect("/")
+    if (n != "" and w != "" and h != "" and i != ""):
+        pokemons.append({ "name": n, "weight": w, "height": h, "img": i })
+        return redirect("/")
+    else:
+        abort(400) # Bad Request
     
-
-app.run(debug = True)
