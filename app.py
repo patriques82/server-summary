@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 pokemons = [
     { "name": "pikachu", "height": 0.4, "weight": 6.0, "img": "https://img.pokemondb.net/artwork/large/pikachu.jpg"  },
@@ -15,14 +15,14 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def index():
-    return pokemons
+    return render_template("pokemons.html", pokemons=pokemons)
 
 @app.route("/<name>", methods=["GET"])
 def pokemon(name):
     for p in pokemons:
         if (p["name"] == name):
-            return p
-    return "Not Found"
+            return render_template("pokemon.html", pokemon=p)
+    return render_template("not_found.html")
 
 @app.route("/createPokemon", methods=["GET"])
 def createForm():

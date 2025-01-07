@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Pokedex</h1>
+    <ul>
+      {% for p in pokemons %}
+      <li>
+        Name: {{ p["name"] }}, Weight: {{ p["weight"] }}, Height: {{ p["height"]
+        }}
+        <br />
+        <img src="{{ p['img'] }}" height="200px" width="150px" />
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
