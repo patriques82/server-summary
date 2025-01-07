@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 
 pokemons = [
     { "name": "pikachu", "height": 0.4, "weight": 6.0, "img": "https://img.pokemondb.net/artwork/large/pikachu.jpg"  },
@@ -26,6 +26,16 @@ def pokemon(name):
 
 @app.route("/createPokemon", methods=["GET"])
 def createForm():
-    return "Create form"
+    return render_template("create_pokemon.html")
+
+@app.route("/extractFormData", methods=["POST"])
+def extractForm():
+    n = request.form["name"]
+    w = request.form["weight"]
+    h = request.form["height"]
+    i = request.form["img"]
+    pokemons.append({ "name": n, "weight": w, "height": h, "img": i })
+    return redirect("/")
+    
 
 app.run(debug = True)

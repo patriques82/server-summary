@@ -5,7 +5,7 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>{{ pokemon["name"] }}</h1>
+    <h1>{{ pokemon["name"] | title }}</h1>
     <p>Weight: {{ pokemon["weight"] }} kg</p>
     <p>Height: {{ pokemon["height"] }} kg</p>
     <img src="{{ pokemon['img'] }}" height="300px" width="230px" />
