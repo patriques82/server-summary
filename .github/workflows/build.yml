@@ -20,4 +20,4 @@ jobs:
           pip install -r requirements.txt
       - name: Test with unittest
         run: |
-          echo "#TODO"
+          python -m unittest discover -s tests -p 'unittests.py'
